@@ -1,0 +1,120 @@
+/* src/styles/Home.module.css */
+
+/* --- Hero Section --- */
+.heroSection {
+  height: 90vh; /* Almost full screen height */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #111;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Adds a dark overlay so text is readable over the image */
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.heroContent h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.heroContent p {
+  font-size: 1.5rem;
+  color: #CCCCCC;
+  margin-bottom: 2.5rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  background-color: #D90429; /* Primary Red */
+  color: #FFFFFF;
+  padding: 15px 40px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 50px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 2px solid #D90429;
+}
+
+.ctaButton:hover {
+  background-color: transparent;
+  color: #D90429;
+  transform: scale(1.05);
+}
+
+/* --- Features Section --- */
+.whyChooseUs {
+  padding: 80px 20px;
+  background-color: #111111;
+  text-align: center;
+}
+
+.whyChooseUs h2 {
+  font-size: 2.5rem;
+  color: #D90429;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featureItem {
+  background-color: #1A1A1A; /* Secondary Black */
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  transition: transform 0.3s ease;
+}
+
+.featureItem:hover {
+  transform: translateY(-10px);
+  border-color: #FFD700; /* Gold Accent */
+}
+
+.featureItem h3 {
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.featureItem p {
+  color: #999;
+  line-height: 1.6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+}
