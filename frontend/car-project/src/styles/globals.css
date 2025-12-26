@@ -1,0 +1,53 @@
+:root {
+  --primary-red: #D90429;
+  --primary-black: #111111;
+  --secondary-black: #1A1A1A;
+  --text-white: #FFFFFF;
+  --text-gray: #CCCCCC;
+  --accent-gold: #FFD700;
+  --font-main: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--primary-black);
+  color: var(--text-white);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--primary-black);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-red);
+  border-radius: 4px;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
