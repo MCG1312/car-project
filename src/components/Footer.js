@@ -16,7 +16,7 @@ export default function Footer() {
           <a href="#" className={styles.link}>Instagram</a>
         </div>
         <p className={styles.copyright}>
-          &copy; {new Date().getFullYear()} CarPartsPro. All rights reserved.
+          &copy; {new Date().getFullYear()} PokeAutoParts. All rights reserved.
         </p>
       </div>
     </motion.footer>

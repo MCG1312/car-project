@@ -11,7 +11,6 @@ export default function Account() {
 
   return (
     <div style={{ background: '#050505', minHeight: '100vh', color: 'white' }}>
-      <Header />
       <main style={{ padding: '80px 5%', maxWidth: '1000px', margin: '0 auto' }}>
         
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', borderBottom: '1px solid #333', paddingBottom: '20px' }}>
@@ -59,7 +58,6 @@ export default function Account() {
 
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

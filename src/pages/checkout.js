@@ -1,35 +1,56 @@
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { useCart } from '../context/CartContext';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+// Importe ton client Medusa, nous en aurons besoin
+import { medusaClient } from '@/lib/medusa'; // Adapte le chemin
 
 export default function Checkout() {
-  const { cart, cartTotal, clearCart } = useCart();
+  // 1. On récupère l'objet cart complet, plus besoin de cartTotal séparé
+  const { cart, loading } = useCart();
   const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handlePayment = (e) => {
+  // Fonction pour formater les prix
+  const formatPrice = (amount) => {
+    if (!cart) return "0.00 MAD"; // S'assurer que le panier existe
+    return new Intl.NumberFormat('fr-MA', {
+      style: 'currency',
+      currency: cart.region.currency_code.toUpperCase()
+    }).format(amount / 100);
+  };
+
+  const handlePayment = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
 
-    // Simulate a 2-second payment delay
+    // --- LOGIQUE DE CHECKOUT MEDUSA (à venir) ---
+    // Pour l'instant, on simule toujours le succès
+    // 1. Mettre à jour les infos client dans le panier
+    // 2. Créer une session de paiement
+    // 3. Compléter la commande
+    
+    console.log("Simulation de paiement...");
     setTimeout(() => {
-      clearCart(); // Empty the cart
-      router.push('/success'); // Go to success page
+      // On ne vide plus le contexte, on supprime le cart_id
+      localStorage.removeItem('cart_id'); 
+      router.push('/success');
     }, 2000);
   };
 
-  if (cart.length === 0) {
+  // 2. GESTION DU CHARGEMENT ET PANIER VIDE
+  if (loading) {
+    return <div style={{ color: 'white', textAlign: 'center', padding: '100px' }}>Chargement...</div>;
+  }
+
+  // La vérification doit se faire sur cart.items
+  if (!cart || !cart.items || cart.items.length === 0) {
     if (typeof window !== 'undefined') router.push('/cart');
     return null;
   }
 
   return (
     <div style={{ background: '#050505', minHeight: '100vh', color: 'white' }}>
-      <Header />
-      <main style={{ padding: '80px 5%', maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '50px', flexWrap: 'wrap' }}>
-        
+      <main style={{ padding: '80px 5%', maxWidth: '1200px', margin: '0 auto', display: 'flex', gap: '50px', flexWrap: 'wrap-reverse' }}>
         {/* LEFT: SHIPPING FORM */}
         <div style={{ flex: 2, minWidth: '300px' }}>
           <h1 style={{ fontSize: '2.5rem', marginBottom: '30px' }}>CHECKOUT</h1>
@@ -132,7 +153,6 @@ export default function Checkout() {
         </div>
 
       </main>
-      <Footer />
     </div>
   );
 }

@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 export default function Contact() {
   return (
     <div style={{ background: '#000', color: 'white', minHeight: '100vh' }}>
-      <Header />
       <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh', padding: '20px' }}>
         <motion.div 
           initial={{ rotateY: 90, opacity: 0 }} 
@@ -22,7 +21,6 @@ export default function Contact() {
           </form>
         </motion.div>
       </main>
-      <Footer />
     </div>
   );
 }
