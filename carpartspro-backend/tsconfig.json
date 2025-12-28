@@ -26,10 +26,15 @@
     "**/*",
     ".medusa/types/*"
   ],
+  // --- C'EST ICI LA CORRECTION ---
   "exclude": [
     "node_modules",
     ".medusa/server",
     ".medusa/admin",
-    ".cache"
+    ".cache",
+    "src/_scripts",   // On dit à TypeScript d'ignorer ce dossier
+    "src/_services",  // et celui-ci
+    "src/migrations"  // et celui-ci aussi
   ]
+  // -----------------------------
 }

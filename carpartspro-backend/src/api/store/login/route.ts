@@ -26,19 +26,23 @@ export async function POST(req: MedusaRequest, res: MedusaResponse) {
       body: { email, password }
     });
 
-    if (!success) {
-      throw new Error("Authentification échouée: Identifiants invalides.");
+    if (!success || !authIdentity) { // Ajout de la vérification !authIdentity
+      throw new Error("Authentification échouée ou identité non trouvée.");
     }
+
     
     // --- LA CORRECTION EST ICI ---
     // On extrait l'ID du client depuis les métadonnées de l'application
     const customerId = authIdentity.app_metadata?.customer_id;
-    // ----------------------------
     
-    if (!customerId) {
-        throw new Error("Authentification réussie mais le customer_id est manquant dans app_metadata.");
+    // --- LA CORRECTION EST ICI ---
+    // On vérifie explicitement que customerId est une chaîne de caractères non vide
+    if (typeof customerId !== 'string' || !customerId) {
+        throw new Error("Authentification réussie mais le customer_id est invalide ou manquant dans app_metadata.");
     }
+    // ----------------------------
 
+    // Après ce bloc, TypeScript est maintenant CERTAIN que customerId est une 'string'
     const customerModule = req.scope.resolve(Modules.CUSTOMER);
     const customer = await customerModule.retrieveCustomer(customerId);
 

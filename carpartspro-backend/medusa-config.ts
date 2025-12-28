@@ -6,8 +6,6 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 module.exports = defineConfig({
   projectConfig: {
     databaseUrl: process.env.DATABASE_URL,
-    
-    // On revient à la configuration standard qui lit le fichier .env
     http: {
       storeCors: process.env.STORE_CORS!,
       adminCors: process.env.ADMIN_CORS!,
@@ -17,24 +15,23 @@ module.exports = defineConfig({
     }
   },
   modules: [
-    // Ton module Auth
     {
       resolve: "@medusajs/medusa/auth",
       options: {
-        providers: [
-          {
-            resolve: "@medusajs/medusa/auth-emailpass",
-            id: "emailpass",
-          },
+        providers: [ 
+          { 
+            resolve: "@medusajs/medusa/auth-emailpass", 
+            id: "emailpass" 
+          } 
         ],
       },
     },
-    
-    // --- AJOUTE CE BLOC POUR L'INVENTAIRE ---
     {
-      resolve: "@medusajs/inventory",
-      // options: { ... } // Pas besoin d'options pour une config de base
+      resolve: "@medusajs/medusa/inventory",
     },
-    // ------------------------------------
+    {
+      resolve: "@medusajs/payment",
+      // Pas d'options = provider système par défaut (manual)
+    },
   ],
 })

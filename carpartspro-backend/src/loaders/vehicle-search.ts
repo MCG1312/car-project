@@ -1,6 +1,6 @@
 import { MedusaContainer } from "@medusajs/medusa"
 import { Logger } from "@medusajs/medusa"
-import VehicleService from "../services/vehicle"
+import VehicleService from "../_services/vehicle"
 
 type InjectedDependencies = {
   manager: any
