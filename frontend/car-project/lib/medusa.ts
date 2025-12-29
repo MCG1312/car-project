@@ -20,10 +20,9 @@ export async function customFetch(endpoint, method = "GET", body = null) {
   }
   // ------------------------------------
 
-  const options = {
+  const options: RequestInit = { 
     method,
     headers,
-    // On n'a PLUS BESOIN de 'credentials: "include"' car on n'utilise plus de cookies
   };
 
   if (body) {
