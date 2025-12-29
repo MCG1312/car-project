@@ -26,7 +26,6 @@
     "@medusajs/cli": "2.12.3",
     "@medusajs/framework": "2.12.3",
     "@medusajs/medusa": "2.12.3",
-    "@medusajs/medusa-js": "^6.1.10",
     "@medusajs/payment": "^2.12.3",
     "@types/jsonwebtoken": "^9.0.10",
     "class-transformer": "^0.5.1",
