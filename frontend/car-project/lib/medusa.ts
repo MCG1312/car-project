@@ -1,6 +1,10 @@
 // lib/medusa.ts
 
-const BACKEND_URL = "http://localhost:3000/api/medusa";
+const BACKEND_URL = process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL;
+
+if (!BACKEND_URL) {
+  throw new Error("La variable d'environnement NEXT_PUBLIC_MEDUSA_BACKEND_URL n'est pas définie.");
+}
 // Remplace par ta VRAIE clé publique commençant par pk_
 const API_KEY = process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || "pk_f73a6c1d815debd5454fcfa0ea2aa554e00b6c7c2c746695425f2774ac0026a0"; 
 
